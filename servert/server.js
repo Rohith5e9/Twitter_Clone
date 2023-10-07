@@ -17,9 +17,19 @@ app.use(cors({
 
 //connect mongodb with the help of mongoose
 
-mongoose.connect('mongodb+srv://raghuveer:12112002@cluster0.ljfmjg2.mongodb.net/?retryWrites=true&w=majority').then(
-    console.log("db is connected")
-);
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://raghuveer:12112002@cluster0.ljfmjg2.mongodb.net/?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log("DB is connected");
+})
+.catch((err) => {
+  console.error("Error connecting to the database:", err);
+});
+
 
 //static the image files avilable to frontend
 app.use("/images", express.static("images"));
